@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Dia das Mães!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff0f5;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .envelope-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .envelope {
+            width: 200px;
+            height: 130px;
+            background: #e91e63;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .envelope::before,
+        .envelope::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 65px 100px 0 100px;
+            border-color: #f48fb1 transparent transparent transparent;
+            top: 0;
+            left: 0;
+        }
+        
+        .envelope::after {
+            top: auto;
+            bottom: 0;
+            border-width: 0 100px 65px 100px;
+            border-color: transparent transparent #f06292 transparent;
+        }
+        
+        .click-text {
+            font-size: 18px;
+            color: #c2185b;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+        
+        .container {
+            max-width: 90%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            z-index: 2;
+            position: relative;
+            padding: 20px;
+            display: none;
+            margin: 0 10px;
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: float 6s infinite;
+            opacity: 0.7;
+            z-index: 0;
+        }
+        
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-800px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="envelopeContainer" class="envelope-container">
+        <div id="envelope" class="envelope" title="Clique para abrir a carta"></div>
+        <div class="click-text">Clique para abrir</div>
+    </div>
+
+    <div id="message" class="container">
+        <h1>Feliz Dia das Mães!</h1>
+        <p>
+            Mãe é aquele tipo de amor que abraça até de longe, que entende no olhar, que enfrenta o mundo com um sorriso só pra ver o filho bem.<br><br> É quem troca o próprio sono por cuidado, o próprio tempo por presença, e o próprio coração… por um
+            amor que nunca acaba.<br><br> E isso vale também pra quem ainda nem conheceu o rostinho, mas já ama mais do que tudo.<br><br> Vocês são o colo que acalma, a força que inspira e o amor mais bonito que existe.<br><br> Obrigada por tudo, sempre!<br><br>            Neste Dia das Mães, dedico essa mensagem a todas que já carregam seus filhos nos braços e também àquelas que os carregam no coração ou no ventre. Que o amor que vocês dão ao mundo volte em dobro em forma de carinho, paz e muitos sorrisos sinceros.
+        </p>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const message = document.getElementById('message');
+
+        envelope.addEventListener('click', () => {
+            envelopeContainer.style.display = 'none';
+            message.style.display = 'block';
+        });
+
+        for (let i = 0; i < 25; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.width = heart.style.height = (Math.random() * 10 + 10) + 'px';
+            document.body.appendChild(heart);
+        }
+    </script>
+    <footer style="margin-top: 20px; font-size: 13px; color: #888;">
+        Feito com carinho por <strong>Vitor Duarte</strong>
+    </footer>
+
+</body>
+
+</html>
